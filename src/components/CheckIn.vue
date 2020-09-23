@@ -1,28 +1,25 @@
 <template>
   <div class="checkIn">
-    <button>{{ buttonLabel }}</button>
-    <ul>
-      <li v-for="check in checks" v-bind:key="check.type">
-        {{ check.type }} - {{ new Date(check.time).toLocaleString('es-ES') }}
-      </li>
-    </ul>
+    <button v-on:click="check">{{ buttonLabel }}</button>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'CheckIn',
-  data: function () {
-    return {
-      checks: [
-        { type: 'in', time: Date.now() },
-        { type: 'out', time: Date.now() }
-      ]
+  computed: {
+    ...mapState({
+      isRunning: state => state.tick.isRunning
+    }),
+    buttonLabel () {
+      return this.isRunning ? "Check out" : "Check in"
     }
   },
-  computed: {
-    buttonLabel () {
-      return "my button"
+  methods: {
+    check () {
+      this.$store.dispatch('tick/tick')
     }
   }
 }

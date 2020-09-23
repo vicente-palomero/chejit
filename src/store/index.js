@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import checks from './modules/checks'
+import tick from './modules/tick'
 
 Vue.use(Vuex)
 
@@ -8,7 +8,7 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   modules: {
-    checks
+    tick
   },
   strict: debug
 })

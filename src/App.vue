@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <CheckIn />
+    <History />
   </div>
 </template>
 
 <script>
 import CheckIn from './components/CheckIn'
+import History from './components/History'
 
 export default {
   name: 'App',
   components: {
-    CheckIn
+    CheckIn,
+    History
   }
 }
 </script>
