@@ -23,8 +23,10 @@ const actions = {
 const mutations = {
   tick(state) {
     state.isRunning = !state.isRunning
+    const previousId =
+      state.history.length ? state.history[0].getId() : -1
     state.history.unshift(
-      new Tick(state.history.length, state.isRunning)
+      new Tick(previousId + 1, state.isRunning)
     )
   },
   edit(state, { id }) {
