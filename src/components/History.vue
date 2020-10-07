@@ -3,18 +3,11 @@
     <ul>
       <li v-for="tick in history" v-bind:key="tick.getId()">
         <span v-if="tick.isEditing">
-          <span> edit - </span>
-          <span>{{ tick.getType() }}</span>
-          <span>{{ tick.formatDate() }}</span>
-          <span><button v-on:click="edit(tick.getId())">done</button></span>
+          <DateEditor v-bind:tick="tick" />
         </span>
         <span v-else>
-          <span> ok - </span>
-          <span>{{ tick.getType() }}</span>
-          <span>{{ tick.formatDate() }}</span>
-          <span><button v-on:click="edit(tick.getId())">edit</button></span>
+          <DateShow v-bind:tick="tick" />
         </span>
-
       </li>
     </ul>
   </div>
@@ -22,18 +15,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import DateEditor from './DateEditor'
+import DateShow from './DateShow'
 
 export default {
   name: 'History',
+  components: {
+    DateEditor,
+    DateShow
+  },
   computed: {
     ...mapGetters('tick', {
       history: 'history'
     })
-  },
-  methods: {
-    edit(id) {
-      this.$store.dispatch('tick/edit', id)
-    }
   }
 }
 </script>

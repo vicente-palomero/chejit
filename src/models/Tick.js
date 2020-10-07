@@ -15,6 +15,10 @@ class Tick {
     return this.type ? 'in' : 'out'
   }
 
+  getDate() {
+    return new Date(this.timestamp)
+  }
+
   formatDate() {
     return new Date(this.timestamp).toLocaleString('es-ES')
   }
