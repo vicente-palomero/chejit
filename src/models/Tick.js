@@ -15,7 +15,7 @@ class Tick {
     return this.type ? 'in' : 'out'
   }
 
-  getDate() {
+  getDatetime() {
     return new Date(this.timestamp)
   }
 
@@ -25,6 +25,10 @@ class Tick {
 
   swapEditing() {
     this.isEditing = !this.isEditing
+  }
+
+  updateTimestamp(timestamp) {
+    this.timestamp = timestamp || this.timestamp
   }
 }
 

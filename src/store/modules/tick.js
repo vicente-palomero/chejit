@@ -15,8 +15,8 @@ const actions = {
   tick({ commit }) {
     commit('tick')
   },
-  edit({ commit }, id) {
-    commit('edit', { id })
+  edit({ commit }, { id, timestamp }) {
+    commit('edit', { id, timestamp })
   }
 }
 
@@ -29,8 +29,10 @@ const mutations = {
       new Tick(previousId + 1, state.isRunning)
     )
   },
-  edit(state, { id }) {
-    state.history.find(tick => tick.getId() === id).swapEditing()
+  edit(state, { id, timestamp }) {
+    const tick = state.history.find(tick => tick.getId() === id)
+    tick.updateTimestamp(timestamp)
+    tick.swapEditing()
   }
 }
 

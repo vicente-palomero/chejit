@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     edit(id) {
-      this.$store.dispatch('tick/edit', id)
+      this.$store.dispatch('tick/edit', { id })
     }
   }
 }
