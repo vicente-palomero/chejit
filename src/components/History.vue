@@ -8,6 +8,7 @@
         <span v-else>
           <DateShow v-bind:tick="tick" />
         </span>
+        <button v-on:click="remove(tick.getId())">Remove</button>
       </li>
     </ul>
   </div>
@@ -28,6 +29,9 @@ export default {
     ...mapGetters('tick', {
       history: 'history'
     })
+  },
+  methods: {
+    remove(id) { this.$store.dispatch('tick/remove', id) }
   }
 }
 </script>
