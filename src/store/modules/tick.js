@@ -1,4 +1,4 @@
-import Tick from '../../models/Tick'
+import TickFactory from '../../factories/TickFactory'
 
 const state = () => ({
   isRunning: false,
@@ -29,7 +29,7 @@ const mutations = {
     const previousId =
       state.history.length ? state.history[0].getId() : -1
     state.history.unshift(
-      new Tick(previousId + 1, state.isRunning)
+      TickFactory.build(previousId + 1, state.isRunning)
     )
   },
   edit(state, { id, timestamp }) {
@@ -42,10 +42,21 @@ const mutations = {
   }
 }
 
+const hydrate = function(module) {
+  if (!module.history) {
+    return
+  }
+  module.history = module.history.map((tick) => {
+    return Object.assign(TickFactory.build(), tick)
+  })
+  return module
+}
+
 export default {
   namespaced: true,
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  hydrate
 }
