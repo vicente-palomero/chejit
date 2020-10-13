@@ -1,9 +1,8 @@
 <template>
-  <span>
-    <span> ok - </span>
-    <span>{{ tick.getType() }}</span>
-    <span>{{ tick.formatDate() }}</span>
-    <span><button v-on:click="edit(tick.getId())">edit</button></span>
+  <span class="row">
+    <span class="type">{{ tick.getType() }}</span>
+    <span class="date">{{ tick.formatDate() }}</span>
+    <span class="action"><button class="action" v-on:click="edit(tick.getId())">🔒</button></span>
   </span>
 </template>
 

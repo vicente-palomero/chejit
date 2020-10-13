@@ -7,7 +7,7 @@ const state = () => ({
 
 const getters = {
   history: (state) => {
-    return state.history
+    return state.history.slice(0, 7)
   }
 }
 

@@ -2,13 +2,8 @@
   <div class="history">
     <ul>
       <li v-for="tick in history" v-bind:key="tick.getId()">
-        <span v-if="tick.isEditing">
-          <DateEditor v-bind:tick="tick" />
-        </span>
-        <span v-else>
-          <DateShow v-bind:tick="tick" />
-        </span>
-        <button v-on:click="remove(tick.getId())">Remove</button>
+        <DateEditor v-if="tick.isEditing" v-bind:tick="tick" />
+        <DateShow v-else v-bind:tick="tick" />
       </li>
     </ul>
   </div>
@@ -29,9 +24,24 @@ export default {
     ...mapGetters('tick', {
       history: 'history'
     })
-  },
-  methods: {
-    remove(id) { this.$store.dispatch('tick/remove', id) }
-  }
-}
+  }}
 </script>
+
+<style scoped>
+.history{
+  margin: 10% auto;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  width: 100%;
+}
+
+</style>

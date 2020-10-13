@@ -1,18 +1,14 @@
 <template>
-  <span>
-    <span> edit - </span>
-    <span>{{ tick.getType() }}</span>
-    <span>
-      <input type="text" v-model="day" /> / 
-      <input type="text" v-model="month" /> / 
-      <input type="text" v-model="year" /> 
+  <span class="row">
+    <span class="type">{{ tick.getType() }}</span>
+    <span class="date">
+      <input type="text" v-model="day" />/<input type="text" v-model="month" />/<input class="year" type="text" v-model="year" />
+      <input type="text" v-model="hours" />:<input type="text" v-model="minutes" />:<input type="text" v-model="seconds" />
     </span>
-    <span>
-      <input type="text" v-model="hours" /> :
-      <input type="text" v-model="minutes" /> :
-      <input type="text" v-model="seconds" />
+    <span class="action">
+      <button class="action" v-on:click="edit(tick.getId())">🔓</button>
+      <button class="action" v-on:click="remove(tick.getId())">🗑️</button>
     </span>
-    <span><button v-on:click="edit(tick.getId())">done</button></span>
   </span>
 </template>
 
@@ -73,7 +69,8 @@ export default {
       )
       const timestamp = newDate.getTime()
       this.$store.dispatch('tick/edit', { id, timestamp })
-    }
+    } ,
+    remove(id) { this.$store.dispatch('tick/remove', id) }
   },
   created: function () {
     this.tickDate = this.tick.getDatetime()
@@ -83,6 +80,14 @@ export default {
 
 <style>
 input {
-  width: 4ch
+  width: 2ch;
+  text-align: right;
+}
+input.year {
+  width: 4ch;
+  margin-right: 1ch;
+}
+button {
+  padding-left:  5px;
 }
 </style>

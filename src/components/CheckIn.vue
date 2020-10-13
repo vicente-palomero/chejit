@@ -24,3 +24,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.checkIn {
+  margin: 10% auto;
+}
+
+button {
+  width: 70%;
+  font-size: 9vw;
+}
+</style>
